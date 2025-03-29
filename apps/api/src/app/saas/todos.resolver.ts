@@ -10,7 +10,6 @@ export class TodosResolver {
   @Query()
   @UseGuards(GqlAuthGuard)
   async todos(@GqlSession() session: SessionContainer): Promise<Todo[]> {
-    console.log(session);
     return [
       {
         id: '1',

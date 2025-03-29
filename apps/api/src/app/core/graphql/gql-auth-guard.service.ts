@@ -1,5 +1,6 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
+import { AuthenticationError } from '@nestjs/apollo';
 
 @Injectable()
 export class GqlAuthGuard implements CanActivate {
@@ -8,12 +9,7 @@ export class GqlAuthGuard implements CanActivate {
     const { req } = ctx.getContext();
 
     if (!req.session) {
-      /*throw new GraphQLError('Unauthenticated', {
-        extensions: {
-          code: 'UNAUTHENTICATED'
-        }
-      })*/
-      return false; // FIXME: find a way to have something else instead of FORBIDDEN
+      throw new AuthenticationError('Unauthenticated');
     }
 
     return true;
