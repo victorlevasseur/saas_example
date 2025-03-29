@@ -1,0 +1,59 @@
+{
+  "name": "api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "generate-graphql-typings": {
+      "executor": "nx:run-commands",
+      "inputs": [
+        "{workspaceRoot}/package.json",
+        "{projectRoot}/src/schema/**/*.graphqls"
+      ],
+      "options": {
+        "cwd": "apps/api",
+        "command": "tsx scripts/generate-typings.ts",
+      }
+    },
+    "generate": {
+      "dependsOn": [
+        "generate-graphql-typings"
+      ]
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "webpack-cli build",
+        "args": ["node-env=production"]
+      },
+      "configurations": {
+        "development": {
+          "args": ["node-env=development"]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "api:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "api:build:development"
+        },
+        "production": {
+          "buildTarget": "api:build:production"
+        }
+      }
+    },
+    "test": {
+      "options": {
+        "passWithNoTests": true
+      }
+    }
+  }
+}

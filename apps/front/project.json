@@ -6,6 +6,18 @@
   "sourceRoot": "apps/front/src",
   "tags": [],
   "targets": {
+    "generate": {
+      "dependsOn": [
+        "generate-graphql-typings"
+      ]
+    },
+    "generate-graphql-typings": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "graphql-codegen"
+      }
+    },
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
