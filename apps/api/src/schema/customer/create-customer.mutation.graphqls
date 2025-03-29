@@ -1,0 +1,21 @@
+input CreateCustomerInput {
+  name: String!
+  publicName: String!
+}
+
+interface CreateCustomerError {
+  message: String!
+}
+
+type CreateCustomerAlreadyExistsError implements CreateCustomerError {
+  message: String!
+}
+
+type CreateCustomerResult {
+  customer: Customer
+  error: CreateCustomerError
+}
+
+extend type Mutation {
+  createCustomer(input: CreateCustomerInput!): CreateCustomerResult!
+}
