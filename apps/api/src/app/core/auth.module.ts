@@ -1,9 +1,10 @@
-import { DynamicModule, Module } from '@nestjs/common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
 import { SuperTokensModule } from 'supertokens-nestjs';
 import EmailPassword from 'supertokens-node/recipe/emailpassword';
 import Session from 'supertokens-node/recipe/session';
 import { ConfigService } from '@nestjs/config';
 
+@Global()
 @Module({
   exports: [SuperTokensModule],
 })

@@ -47,7 +47,7 @@
     "prettier": "^2.6.2",
     "ts-jest": "^29.1.0",
     "ts-morph": "^25.0.1",
-    "ts-node": "10.9.1",
+    "ts-node": "^10.9.2",
     "tslib": "^2.3.0",
     "tsx": "^4.19.3",
     "typescript": "~5.7.2",
@@ -71,14 +71,23 @@
     "@nestjs/core": "^11.0.12",
     "@nestjs/graphql": "^13.0.4",
     "@nestjs/platform-express": "^11.0.12",
+    "@nestjs/typeorm": "^11.0.0",
     "apollo-angular": "^10.0.3",
     "axios": "^1.6.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
     "graphql": "^16.10.0",
-    "reflect-metadata": "^0.1.13",
+    "neverthrow": "^8.2.0",
+    "pg": "^8.14.1",
+    "reflect-metadata": "^0.2.2",
     "rxjs": "~7.8.0",
     "supertokens-nestjs": "^0.0.2",
     "supertokens-node": "^22.0.0",
     "supertokens-web-js": "^0.15.0",
+    "typeorm": "^0.3.21",
     "zone.js": "~0.15.0"
+  },
+  "scripts": {
+    "typeorm": "typeorm-ts-node-commonjs"
   }
 }

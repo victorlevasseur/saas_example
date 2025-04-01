@@ -1,9 +1,10 @@
 import { join } from 'path';
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import { Global, MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { GraphQLModule as NestGraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { SuperTokensSessionMiddleware } from './super-tokens-session.middleware';
 
+@Global()
 @Module({
   imports: [
     NestGraphQLModule.forRoot<ApolloDriverConfig>({

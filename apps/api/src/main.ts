@@ -5,7 +5,7 @@
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
-import { ConsoleLogger, Logger } from '@nestjs/common';
+import { ConsoleLogger, Logger, ValidationPipe } from '@nestjs/common';
 import supertokens from 'supertokens-node';
 import { SuperTokensExceptionFilter } from 'supertokens-nestjs';
 
@@ -20,11 +20,17 @@ async function bootstrap() {
   const app = await NestFactory.create(
     AppModule);
 
+  // CORS for SuperTokens.
   app.enableCors({
     origin: ['http://localhost:4200'],
     allowedHeaders: ['content-type', ...supertokens.getAllCORSHeaders()],
     credentials: true,
   })
+
+  // Global validation and intanciation of DTO from user inputs
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+
+  // SuperTokens error handling (auth and stuff)
   app.useGlobalFilters(new SuperTokensExceptionFilter())
 
   const port = process.env.PORT || 3000;
