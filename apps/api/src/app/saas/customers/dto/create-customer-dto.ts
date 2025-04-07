@@ -1,13 +1,19 @@
-import { CreateCustomerInput } from '../../../../graphql';
-import { IsNotEmpty, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateCustomerDto implements CreateCustomerInput {
-
+export class CreateCustomerDto {
+  @ApiProperty()
   @IsNotEmpty()
   @MinLength(3)
   name: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @MinLength(3)
   publicName: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsEmail()
+  userEmail: string;
 }

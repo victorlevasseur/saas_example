@@ -1,0 +1,18 @@
+model
+  schema 1.1
+
+type user
+
+type customer
+  relations
+    define system: [system]
+    # Relationships
+    define manager: [user]
+    define member: [user] or manager
+    # Rights
+    define can_view_basic_info: member or admin from system
+    define can_edit_basic_info: manager or admin from system
+
+type system
+  relations
+    define admin: [user]

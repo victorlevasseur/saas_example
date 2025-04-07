@@ -1,2 +1,3 @@
 CREATE DATABASE supertokens;
 CREATE DATABASE api;
+CREATE DATABASE openfga;
